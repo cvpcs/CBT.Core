@@ -24,8 +24,8 @@ namespace CBT.Core.UnitTests
 
         private readonly IList<Tuple<string, string[]>> _moduleExtensions = new List<Tuple<string, string[]>>
         {
-            new Tuple<string, string[]>("Package2.Thing", new[] {"before.package2.targets"}),
-            new Tuple<string, string[]>("Package3.a.b.c.d.e.f", new[] {"before.somethingelse.targets"}),
+            new Tuple<string, string[]>("package2.thing", new[] {"before.package2.targets"}),
+            new Tuple<string, string[]>("package3.a.b.c.d.e.f", new[] {"before.somethingelse.targets"}),
         };
 
         private readonly IList<PackageIdentity> _packages;
@@ -43,10 +43,10 @@ namespace CBT.Core.UnitTests
 
             _packages = new List<PackageIdentity>
             {
-                new PackageIdentity("Package1", new NuGetVersion("1.0.0")),
-                new PackageIdentity("Package1", new NuGetVersion("2.0.0")),
-                new PackageIdentity("Package2.Thing", new NuGetVersion("2.5.1")),
-                new PackageIdentity("Package3.a.b.c.d.e.f", new NuGetVersion(10, 10, 9999, 9999, "beta99", "")),
+                new PackageIdentity("package1", new NuGetVersion("1.0.0")),
+                new PackageIdentity("package1", new NuGetVersion("2.0.0")),
+                new PackageIdentity("package2.thing", new NuGetVersion("2.5.1")),
+                new PackageIdentity("package3.a.b.c.d.e.f", new NuGetVersion(10, 10, 9999, 9999, "beta99", "")),
             };
 
             // Have one module contain 200 extensions so we can test scalability
@@ -58,7 +58,7 @@ namespace CBT.Core.UnitTests
                 moduleExtensions.Add($"after.package{i}.targets");
             }
 
-            _moduleExtensions.Add(new Tuple<string, string[]>("Package1", moduleExtensions.ToArray()));
+            _moduleExtensions.Add(new Tuple<string, string[]>("package1", moduleExtensions.ToArray()));
         }
 
         [Test]
@@ -139,7 +139,6 @@ namespace CBT.Core.UnitTests
             new LockFileFormat().Write(_projectLockFilePath, new LockFile
             {
                 Version = 1,
-                IsLocked = false,
                 Libraries = _packages.Select(i => new LockFileLibrary
                 {
                     Name = i.Id,

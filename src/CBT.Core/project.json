@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "Microsoft.Build": "14.3.0",
-    "NuGet.Configuration": "3.4.3",
-    "NuGet.ProjectManagement": "3.4.3"
+    "NuGet.Configuration": "4.0.0",
+    "NuGet.ProjectManagement": "4.0.0"
   },
   "frameworks": {
     "net45": {}
